@@ -1,0 +1,35 @@
+{# extends 'base.html.twig' #}
+
+{% block title %}
+    <h3>Система поиска заявок пользователей</h3>
+{% endblock %}
+
+{% block head %}
+    <title>Карта</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="https://api-maps.yandex.ru/2.1/?apikey=f6712018-3af8-4e7c-891a-afd219c616b4&lang=ru_RU" type="text/javascript"></script>
+{% endblock %}
+
+{% block body %}
+    <p><a href='/login'>Войти</a></p>
+    <p><a href='/register'>Зарегистрироваться</a></p>
+    <div id="map" style="width: 100%; height: 100%; background-color: #E0E0E0;">
+        <script type="text/javascript">
+            function init(){
+                var myMap = new ymaps.Map("map", {
+                    center: [47.22686636851164, 39.74546166274046],
+                    zoom: 7
+                });
+                {% for marker in markers %}
+	                var placemark = new ymaps.Placemark([{{ marker.latitude }}, {{ marker.longitude }}], {
+                        balloonContentHeader: '{{ marker.fio }}',
+		                balloonContentBody: '{{ marker.text }}',
+                        balloonContentFooter: '{{ marker.city }}' + ',  ' + '{{ marker.address }}',
+		                hintContent: '{{ marker.fio }}'});
+	                myMap.geoObjects.add(placemark);
+                {% endfor %}
+            }         
+            ymaps.ready(init);
+        </script>
+    </div>
+{% endblock %}

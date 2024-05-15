@@ -1,0 +1,27 @@
+{# extends 'base.html.twig' #}
+
+{% block title %}
+    <h3>Подача заявки в систему поиска заявок пользователей</h3>
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+        {{ form_errors(form.fio) }}
+        <p>{{ form_widget(form.fio, {'attr': {'placeholder': 'ФИО'}}) }}</p>
+
+        {{ form_errors(form.text) }}
+        <p>{{ form_widget(form.text, {'attr': {'placeholder': 'Текст заявки'}}) }}</p>
+
+        {{ form_errors(form.city) }}
+        <p>{{ form_widget(form.city, {'attr': {'placeholder': 'Город (Ростовская область)'}}) }}</p>
+
+        {{ form_errors(form.address) }}
+        <p>{{ form_widget(form.address, {'attr': {'placeholder': 'Адрес'}}) }}</p>
+
+        <p>{{ form_widget(form.submit, { 'label': 'Опубликовать' }) }}</p>
+
+    {{ form_end(form) }}
+
+{% endblock %}

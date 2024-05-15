@@ -1,0 +1,24 @@
+{# extends 'base.html.twig' #}
+
+{% block title %}
+    <h3>Регистрация в системе поиска заявок пользователей</h3>
+{% endblock %}
+
+{% block body %}
+
+    {{ form_start(form) }}
+
+        {{ form_errors(form.username) }}
+        <p>{{ form_widget(form.username, {'attr': {'placeholder': 'Логин'}}) }}</p>
+
+        {{ form_errors(form.password) }}
+        <p>{{ form_widget(form.password, {'attr': {'placeholder': 'Пароль'}}) }}</p>
+
+        {{ form_errors(form.fio) }}
+        <p>{{ form_widget(form.fio, {'attr': {'placeholder': 'ФИО (обязательно)'}}) }}</p>
+
+        <p><button type="submit" class="btn">Регистрация</button></p>
+
+    {{ form_end(form) }}
+
+{% endblock %}
